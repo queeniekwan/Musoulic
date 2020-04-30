@@ -47,6 +47,27 @@ form.example::after {
   clear: both;
   display: table;
 }
+
+
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("https://assets-staging.audionetwork.com/usr/common/Background%20music%20header_745px.jpg");
+
+  /* Full height */
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 </style>
 
 
@@ -55,13 +76,14 @@ form.example::after {
 <div class="topnav" id="myTopnav">
     <div class="container">
 <a href="{{ url_for('index')  }}" class="active">Home</a>
-<a href="{{ url_for('about')  }}" class="dropbtn">About</a>
-<a href="{{ url_for('contact')  }}" class="dropbtn">Contact</a>
+<a href="{{ url_for('index')  }}" class="dropbtn">About</a>
+<a href="{{ url_for('index')  }}" class="dropbtn">Contact</a>
 <input type="text" placeholder="Search..">
 <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 </div>
 
+<div class="bg">
 
 <!--Search Input-->	
 <form class="example" method="POST" name="form" style="margin:auto;max-width:300px">
@@ -71,16 +93,10 @@ form.example::after {
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
-
+</div>
 <!--Recent Historical Search-->
-<h2>Recent Search History</h2>
 <table>
-    <tr>
-        <td>{{Track.track_name}}</td>
-        <td>{{Track.artist_name}}</td>
-        <td>{{Track.album}}</td>
-        <td>{{Track.released_date}}</td>
-    </tr>
+
 </table>
 
 

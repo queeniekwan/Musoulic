@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>MBTA Location Result</title>
+  </head>
+  
+  <style>
+
+  </style>
+
+  <body> 
+  {% block body %}
+    <h1>Results</h1>
+    <p>Name: <span style = "color: royalblue">{{Location}}</span>.</p>
+    <p>Artist: <span style = "color: royalblue"> {{station_name}}</span>.</p>
+    <p>Album: <span style = "color: royalblue">{{wheelchair_accessible}}</span>.</p>
+    <p>Released Date: <span style = "color: royalblue">{{wheelchair_accessible}}</span>.</p>
+    <br>
+    
+    {% for profile in profile %}
+    <h1>User Profile</h1>
+    <p>Your past locations: {{ profile.current_location }}.</p>
+    <p>Date Created: {{ profile.date_created.date() }}.</p>
+    {% endfor %}
+    <img src="https://lh3.googleusercontent.com/TJBN_atNh-9LRxHc9Y1lB2VtJkMMtUZg3ERxE12T7utiUQXCtQUcHYb96eq6gaMP6VQ" alt="gps">
+    <br>
+    <a href = "{{ url_for('index')  }}"> Direct to Home</a>
+  {% endblock %}
+  </body>
+</html>
