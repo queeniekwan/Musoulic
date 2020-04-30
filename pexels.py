@@ -1,40 +1,30 @@
-import logging
-import os
-from pypexels import PyPexels
-api_key = os.environ.get('API_KEY', None) or 'DUMMY_API_KEY'
+''' Installation
+pip3 install pexels-api
+'''
 
+from pexels_api import API
 
-# Initialize app logging
-logger = logging.getLogger()
-logging.basicConfig(filename='app_search.log', level=logging.DEBUG)
+PEXELS_API_KEY = '563492ad6f91700001000001f15d07838df1429bb172cf9081a1f0cc'
 
-# pypexels logger defaults to level logging.ERROR
-# If you need to change that, use getLogger/setLevel
-# on the module logger, like this:
-logging.getLogger(PyPexels.logger_name).setLevel(logging.DEBUG)
+# Create API object
+px = API(PEXELS_API_KEY)
 
-# add a headers to the log
-logger.debug(80*'=')
-logging.debug('Testing PyPexels.search()')
-logger.debug(80*'=')
-
-# instantiate PyPexels object
-py_pexel = PyPexels(api_key=api_key)
-
-# Start with a search query, maximize number of items per page
-# Note: this will run until all results pages have been visited,
-#       unless a connection error occurs.
-#       Typically the API hourly limit gets hit during this
-#
-search_results_page = py_pexel.search(query='red flowers', per_page=40)
-while True:
-    for photo in search_results_page.entries:
-        print(photo.id, photo.photographer, photo.url)
-    if not search_results_page.has_next:
-        break
-    search_results_page = search_results_page.get_next_page()
+def search_photo(query='', results_per_page=1):
+    '''
+    Search a photo on Pexels using the string query, 
+    return a dictionary with the photographer and photo address (original size)
+    '''
+    px.search(query=query, results_per_page=results_per_page, page=1)  
+    photos = px.get_entries()
+    photo_d = {}
+    for photo in photos:
+        photo_d['photographer'] = photo.photographer
+        photo_d['link'] = photo.original
+    return photo_d
 
 def main():
+    p = search_photo('sadness')
+    print(p)
     
 
 if __name__ == "__main__":
