@@ -52,36 +52,24 @@ form.example::after {
 
 <body>
 <!--Responsive Topnav-->	     
-<div class="topnav" id="myTopnav">
-    <div class="container">
-<a href="{{ url_for('index')  }}" class="active">Home</a>
-<a href="{{ url_for('about')  }}" class="dropbtn">About</a>
-<a href="{{ url_for('contact')  }}" class="dropbtn">Contact</a>
-<input type="text" placeholder="Search..">
-<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-</div>
-</div>
+
 
 
 <!--Search Input-->	
 <form class="example" method="POST" name="form" style="margin:auto;max-width:300px">
-  {% if error %}
-  {% endif %}
-  <input type="text" placeholder="Search..">
+    {% if error %}
+    <p style="color:orangered"><b>Unfortunately, that song is not in our database :ccc</b></p>
+    {% endif %}
+    {% if empty %}
+    <p style="color:orangered"><b>Please enter a valid search query!</b></p>
+    {% endif %}
+  <input type="text" placeholder="Search.." name="query">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
 
 <!--Recent Historical Search-->
-<h2>Recent Search History</h2>
-<table>
-    <tr>
-        <td>{{Track.track_name}}</td>
-        <td>{{Track.artist_name}}</td>
-        <td>{{Track.album}}</td>
-        <td>{{Track.released_date}}</td>
-    </tr>
-</table>
+
 
 
 </body>
