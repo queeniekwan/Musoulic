@@ -83,13 +83,18 @@ body, html {
 </div>
 </div>
 
+
 <div class="bg">
 
 <!--Search Input-->	
 <form class="example" method="POST" name="form" style="margin:auto;max-width:300px">
-  {% if error %}
-  {% endif %}
-  <input type="text" placeholder="Search..">
+    {% if error %}
+    <p style="color:orangered"><b>Unfortunately, that song is not in our database :ccc</b></p>
+    {% endif %}
+    {% if empty %}
+    <p style="color:orangered"><b>Please enter a valid search query!</b></p>
+    {% endif %}
+  <input type="text" placeholder="Search.." name="query">
   <button type="submit"><i class="fa fa-search"></i></button>
 </form>
 
