@@ -36,18 +36,18 @@ def index():
     ''' home page '''
     return render_template('index.html')
 
-@app.route('/search-result', methods=['GET', 'POST'])
-def get_result():
+@app.route('/search-song', methods=['GET', 'POST'])
+def search():
     '''get result for a search'''
     if request.method == 'POST':
         try:
             query = str(request.form['query'])
             song_info = sp.song_info(query)
         except:
-            return render_template('form.html', empty=True)
+            return render_template('search.html', empty=True)
     
         if not song_info:
-            return render_template('form.html', error=True)
+            return render_template('search.html', error=True)
         
         features = sp.song_features(song_info['song_id'])
         recommendations = sp.recommendations(song_id=song_info['song_id'], artist_id=song_info['artist_id'])
@@ -55,7 +55,7 @@ def get_result():
         return render_template('result.html', name=song_info['song'], artist=song_info['artist'], 
         albumn=song_info['album'], release_date=song_info['release_date'])
     
-    return render_template('form.html')
+    return render_template('search.html')
 
 
 if __name__ == "__main__":
