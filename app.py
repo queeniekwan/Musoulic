@@ -36,7 +36,7 @@ def index():
     ''' home page '''
     return render_template('index.html')
 
-@app.route('/search-song', methods=['GET', 'POST'])
+@app.route('/search-song/', methods=['GET', 'POST'])
 def search():
     '''get result for a search'''
     if request.method == 'POST':

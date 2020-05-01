@@ -9,8 +9,13 @@
 </head>
 
 <style>
-    body {
-  font-family: Arial;
+body{margin:0;}
+body {
+  background-image: url('https://cdn1.vectorstock.com/i/1000x1000/50/85/abstract-music-background-with-notes-vector-6375085.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+  background-position: center;
 }
 
 * {
@@ -48,47 +53,38 @@ form.example::after {
   display: table;
 }
 
-body, html {
-  height: 100%;
-  margin: 0;
+
+.box{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
 }
-
-.bg {
-  /* The image used */
-  background-image: url("https://assets-staging.audionetwork.com/usr/common/Background%20music%20header_745px.jpg");
-
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 </style>
 
 <body>
-<!--Responsive Topnav-->	     
+<!--Responsive Topnav-->	    
 <div class="topnav" id="myTopnav">
     <div class="container">
 <a href="{{ url_for('index')  }}" class="active">Home</a>
 <a href="{{ url_for('index')  }}" class="dropbtn">About</a>
 <a href="{{ url_for('index')  }}" class="dropbtn">Contact</a>
-<input type="text" placeholder="Search..">
 <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-</div>
 </div>
 
 <!--Search Input-->	
-<form class="example" method="POST" name="form" style="margin:auto;max-width:300px">
+  <div class="box">
+  <form class="example" method="POST" name="form" style="margin:auto;max-width:300px">
     {% if error %}
     <p style="color:orangered"><b>Unfortunately, that song is not in our database :ccc</b></p>
     {% endif %}
     {% if empty %}
     <p style="color:orangered"><b>Please enter a valid search query!</b></p>
     {% endif %}
-  <input type="text" placeholder="Search.." name="query">
-  <button type="submit"><i class="fa fa-search"></i></button>
-</form>
+    <input type="text" placeholder="Search.." name="query">
+    <button type="submit"><i class="fa fa-search"></i></button>
+  </form>
+  </div>
+</div>
 </body>
