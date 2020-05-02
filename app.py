@@ -33,12 +33,11 @@ def search():
         # get emotion tag and search for pic
         emotion = sp.emotion(features)
         emotion_pic = px.search_photo(emotion)
-        pic_link = emotion_pic['link']
 
-        return render_template('result.html', name=song_info['song'], artist=song_info['artist'], 
-        albumn=song_info['album'], release_date=song_info['release_date'],
-        recommendations=recommendations, emotion=emotion,
-        plot=figdata_png.decode('utf8'), pic=pic_link)
+        return render_template('result.html', 
+        name=song_info['song'], artist=song_info['artist'], albumn=song_info['album'], release_date=song_info['release_date'],
+        recommendations=recommendations, plot=figdata_png.decode('utf8'), 
+        emotion=emotion, photographer=emotion_pic['photographer'], pic=emotion_pic['link'])
     
     return render_template('search.html')
 

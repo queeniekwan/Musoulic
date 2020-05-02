@@ -1,10 +1,3 @@
-''' Instalation and create enviroment
-
-pip3 install spotipy
-export SPOTIPY_CLIENT_ID=146abbf4a23e4b4d9ecb410a9923a35f
-export SPOTIPY_CLIENT_SECRET=eecbb95959074abb8d773a216294b6b0
-'''
-
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from pprint import pprint
@@ -14,16 +7,16 @@ import copy
 from io import BytesIO
 import base64
 
-
+# API keys
 client_id = '146abbf4a23e4b4d9ecb410a9923a35f'
 client_secret = 'eecbb95959074abb8d773a216294b6b0'
-
+# Create API object
 client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def search_song(query):
     '''
-    Search a track with query (string)
+    Search a track with a query (string)
     return the top one searched result 
     return a dict with its song name, song id, artist, artist id, album, and release date
     '''

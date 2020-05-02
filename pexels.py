@@ -1,11 +1,7 @@
-''' Installation
-pip3 install pexels-api
-'''
-
 from pexels_api import API
 
+# API keys
 PEXELS_API_KEY = '563492ad6f91700001000001f15d07838df1429bb172cf9081a1f0cc'
-
 # Create API object
 px = API(PEXELS_API_KEY)
 
