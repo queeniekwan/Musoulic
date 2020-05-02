@@ -10,6 +10,10 @@ from spotipy.oauth2 import SpotifyClientCredentials
 from pprint import pprint
 import pandas as pd
 import matplotlib.pyplot as plt
+import copy
+from io import BytesIO
+import base64
+
 
 client_id = '146abbf4a23e4b4d9ecb410a9923a35f'
 client_secret = 'eecbb95959074abb8d773a216294b6b0'
@@ -45,11 +49,12 @@ def song_features(id):
 
     return r[0]
 
-def features_visualization(feature_dict):
+def features_visualization(features):
     '''
     features - a dictionary of track features
     prints a bar plot of all features
     '''
+    feature_dict = copy.deepcopy(features)
     # exclude some features
     for feature in ['tempo','duration_ms','analysis_url', 'id', 'track_href', 'type', 'uri']:
         del feature_dict[feature]
@@ -62,9 +67,26 @@ def features_visualization(feature_dict):
     # creat pandas DataFrame and plot bar chart
     df = pd.DataFrame(feature_dict)
     row = df.iloc[0]
-    row.plot(kind='bar', x='Features', y='Values', title='Track Features')
-    plt.show()
+    row.plot(kind='barh', x='Values', y='Features', title='Track Features')
+    figfile = BytesIO()
+    plt.savefig(figfile, format='png')
+    figfile.seek(0)
+    figdata_png = base64.b64encode(figfile.getvalue())
+    return figdata_png
 
+def emotion(features):
+    '''
+    returns an emotion tag (string) based on a song's features (dict)
+    '''
+    emotion = ''
+    if features['energy']<0.45 or features['speechiness']<0.035 or features['valence']<0.3:
+        emotion = 'sad'
+    elif features['energy']<0.7 or features['speechiness']<0.08 or features['valence']>0.5:
+        emotion = 'sweet and happy'
+    elif features['energy']>=0.7 or features['speechiness']>=0.08 or features['valence']>=0.6:
+        emotion = 'energetic'
+
+    return emotion
 
 def recommendations(song_id='', artist_id=''):
     '''
@@ -83,14 +105,17 @@ def recommendations(song_id='', artist_id=''):
     
 
 def main():
-    song_info = search_song('cradles sub urban')
-    print(song_info)
+    song_info = search_song('baby')
+    # print(song_info)
     if song_info:
         features = song_features(song_info['song_id'])
-        pprint(features)
+        # pprint(features)
         rec = recommendations(song_info['song_id'], song_info['artist_id'])
-        print(rec)
-        features_visualization(features)
+        # print(rec)
+        # features_visualization(features)
+        # plot_url = features_visualization(features)
+        # print(plot_url)
+        # print(emotion(features))
 
 
 if __name__ == "__main__":
