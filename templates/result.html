@@ -21,28 +21,36 @@ body {
 
   <body> 
   {% block body %}
-    <h1>Results</h1>
+    <h1>Results</h1> <br>
+
+    <h3 style="color: palevioletred;"><b>Basic Track Info >></b></h3>
     <table>
-    <td>
-      <tr>Name</tr>
-      <tr>{{name}}</tr>
-    </td>
-    <p>Name: <span style = "color: royalblue">{{name}}</span>.</p>
-    <p>Artist: <span style = "color: royalblue"> {{artist}}</span>.</p>
-    <p>Album: <span style = "color: royalblue">{{albumn}}</span>.</p>
-    <p>Released Date: <span style = "color: royalblue">{{release_date}}</span>.</p>
+    <p>Name: <span style = "color: rgb(90, 45, 60)">{{name}}</span></p>
+    <p>Artist: <span style = "color: rgb(90, 45, 60)"> {{artist}}</span></p>
+    <p>Album: <span style = "color: rgb(90, 45, 60)">{{albumn}}</span></p>
+    <p>Released Date: <span style = "color: rgb(90, 45, 60)">{{release_date}}</span></p>
     </table>
 
+    <h3 style="color: palevioletred;"> <b>Song Features >></b></h3>
     <img src="data:image/png;base64,{{ plot }}" alt="feature plot">
+
+    <h3 style="color: palevioletred;"><b>Similar Song Recommendations >></b></h3>
+    <ul>
+      {% for song in recommendations %}
+        <li style = "color: rgb(90, 45, 60)">{{ song }}</li>
+      {% endfor %}
+    </ul>
+    <br>
+    <h3 style="color: palevioletred;"><b>Song Emotion >></b></h3>
+    <p style = "color: rgb(90, 45, 60)">This song is {{ emotion }}</p>
     <img src="{{ pic }}" alt="emotion pic">
 
     
-    {% for profile in profile %}
-    <h1>User Profile</h1>
-    <p>Your past locations: {{ profile.current_location }}.</p>
-    <p>Date Created: {{ profile.date_created.date() }}.</p>
-    {% endfor %}
-    <a href = "{{ url_for('index')  }}"> Direct to Home</a>
+    
+    
+    <a href = "{{ url_for('index')  }}">Home</a>
+    <a href = "{{ url_for('search')  }}">New Search</a>
+
   {% endblock %}
   </body>
 </html>
