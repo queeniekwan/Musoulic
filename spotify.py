@@ -28,16 +28,14 @@ def search_song(query):
     return a dict with its song name, song id, artist, artist id, album, and release date
     '''
     r = sp.search(query, type='track', limit=1)
-    try:
-        song = r['tracks']['items'][0]['name']
-        song_id = r['tracks']['items'][0]['id']
-        artist = r['tracks']['items'][0]['artists'][0]['name']
-        artist_id = r['tracks']['items'][0]['artists'][0]['id']
-        album = r['tracks']['items'][0]['album']['name']
-        release_date = r['tracks']['items'][0]['album']['release_date']
-        song_info = {'song': song, 'song_id': song_id, 'artist': artist, 'artist_id': artist_id, 'album': album, 'release_date':release_date}
-    except:
-        song_info = {}
+    song = r['tracks']['items'][0]['name']
+    song_id = r['tracks']['items'][0]['id']
+    artist = r['tracks']['items'][0]['artists'][0]['name']
+    artist_id = r['tracks']['items'][0]['artists'][0]['id']
+    album = r['tracks']['items'][0]['album']['name']
+    release_date = r['tracks']['items'][0]['album']['release_date']
+    song_info = {'song': song, 'song_id': song_id, 'artist': artist, 'artist_id': artist_id, 'album': album, 'release_date':release_date}
+
     return song_info
 
 def song_features(id):
