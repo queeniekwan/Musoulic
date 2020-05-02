@@ -11,7 +11,7 @@
   <style>
 body{margin:0;}
 body {
-  background-image: url('https://img3.stockfresh.com/files/p/pzaxe/m/34/2426724_stock-photo-seamless-vector-background---color-lines-on-white---eps8.jpg');
+  background-image: url('https://thumbs.dreamstime.com/b/abstract-music-seamless-pattern-background-colored-notes-treble-clef-cute-elements-white-package-design-74145893.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;
@@ -39,28 +39,7 @@ body {
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
   
-  <div class="text">
-    <h1>Results</h1>
-    <table>
-    <tr>
-      <td>Name</td>
-      <td>{{name}}</td>
-    </tr>
-    <tr>
-      <td>Artist</td>
-      <td>{{artist}}</td>
-    </tr>
-    <tr>
-      <td>Album</td>
-      <td>{{albumn}}</td>
-    </tr>
-    <tr>
-      <td>Released Date</td>
-      <td>{{release_date}}</td>
-    </tr>
-  {% block body %}
-    <h1>Results</h1> <br>
-
+  <h1>Results</h1> <br>
     <h3 style="color: palevioletred;"><b>Basic Track Info >></b></h3>
     <table>
     <p>Name: <span style = "color: rgb(90, 45, 60)">{{name}}</span></p>
@@ -69,17 +48,9 @@ body {
     <p>Released Date: <span style = "color: rgb(90, 45, 60)">{{release_date}}</span></p>
     </table>
   </div>
-
-  <h2>Song Features:</h2>
-    <img src="data:image/png;base64,{{ plot }}" alt="feature plot" class="center">
-  <h2>Recommendations:</h2>
-  {% for song in recommendations %}
-        <li style = "color: rgb(90, 45, 60)">{{ song }}</li>
-  <h2>Emotions Pictures Based on Song Features:</h2>
-    <img src="{{ pic }}" alt="emotion pic" class="center">
     
     <h3 style="color: palevioletred;"> <b>Song Features >></b></h3>
-    <img src="data:image/png;base64,{{ plot }}" alt="feature plot">
+    <img src="data:image/png;base64,{{ plot }}" alt="feature plot" class="center">
 
     <h3 style="color: palevioletred;"><b>Similar Song Recommendations >></b></h3>
     <ul>
@@ -90,14 +61,12 @@ body {
     <br>
     <h3 style="color: palevioletred;"><b>Song Emotion >></b></h3>
     <p style = "color: rgb(90, 45, 60)">This song is {{ emotion }}</p>
-    <img src="{{ pic }}" alt="emotion pic">
+    <img src="{{ pic }}" alt="emotion pic" class ="center">
 
     
     
     
     <a href = "{{ url_for('index')  }}">Home</a>
     <a href = "{{ url_for('search')  }}">New Search</a>
-
-  {% endblock %}
   </body>
 </html>

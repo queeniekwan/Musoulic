@@ -75,3 +75,36 @@ input[type=text] {
     <p>Album: <span style = "color: royalblue">{{albumn}}</span>.</p>
     <p>Released Date: <span style = "color: royalblue">{{release_date}}</span>.</p>
     </table>
+
+
+
+    
+    
+    <div class="text">
+      <h1>Results</h1>
+      <table>
+      <tr>
+        <td>Name</td>
+        <td>{{name}}</td>
+      </tr>
+      <tr>
+        <td>Artist</td>
+        <td>{{artist}}</td>
+      </tr>
+      <tr>
+        <td>Album</td>
+        <td>{{albumn}}</td>
+      </tr>
+      <tr>
+        <td>Released Date</td>
+        <td>{{release_date}}</td>
+      </tr>
+
+
+      <h2>Song Features:</h2>
+    <img src="data:image/png;base64,{{ plot }}" alt="feature plot" class="center">
+  <h2>Recommendations:</h2>
+  {% for song in recommendations %}
+        <li style = "color: rgb(90, 45, 60)">{{ song }}</li>
+  <h2>Emotions Pictures Based on Song Features:</h2>
+    <img src="{{ pic }}" alt="emotion pic" class="center">
