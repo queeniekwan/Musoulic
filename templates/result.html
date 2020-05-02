@@ -1,22 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Music Search Result</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel='stylesheet' href="{{ url_for('static',filename='css/externalstylesheet.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
   
   <style>
-
+body{margin:0;}
+body {
+  background-image: url('https://cdn1.vectorstock.com/i/1000x1000/50/85/abstract-music-background-with-notes-vector-6375085.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  background-size: cover;
+  background-position: center;
+}
   </style>
 
   <body> 
   {% block body %}
     <h1>Results</h1>
+    <table>
+    <td>
+      <tr>Name</tr>
+      <tr>{{name}}</tr>
+    </td>
     <p>Name: <span style = "color: royalblue">{{name}}</span>.</p>
     <p>Artist: <span style = "color: royalblue"> {{artist}}</span>.</p>
     <p>Album: <span style = "color: royalblue">{{albumn}}</span>.</p>
     <p>Released Date: <span style = "color: royalblue">{{release_date}}</span>.</p>
-    <br>
+    </table>
 
     <img src="data:image/png;base64,{{ plot }}" alt="feature plot">
     <img src="{{ pic }}" alt="emotion pic">
@@ -27,8 +42,6 @@
     <p>Your past locations: {{ profile.current_location }}.</p>
     <p>Date Created: {{ profile.date_created.date() }}.</p>
     {% endfor %}
-    <img src="https://lh3.googleusercontent.com/TJBN_atNh-9LRxHc9Y1lB2VtJkMMtUZg3ERxE12T7utiUQXCtQUcHYb96eq6gaMP6VQ" alt="gps">
-    <br>
     <a href = "{{ url_for('index')  }}"> Direct to Home</a>
   {% endblock %}
   </body>
