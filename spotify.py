@@ -97,12 +97,12 @@ def recommendations(song_id='', artist_id=''):
 
 def main():
     song_info = search_song('baby')
-    # print(song_info)
+    print(song_info)
     if song_info:
         features = song_features(song_info['song_id'])
         # pprint(features)
         rec = recommendations(song_info['song_id'], song_info['artist_id'])
-        # print(rec)
+        print(rec)
         # features_visualization(features)
         # plot_url = features_visualization(features)
         # print(plot_url)
