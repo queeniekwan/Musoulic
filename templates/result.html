@@ -11,38 +11,62 @@
   <style>
 body{margin:0;}
 body {
-  background-image: url('https://cdn1.vectorstock.com/i/1000x1000/50/85/abstract-music-background-with-notes-vector-6375085.jpg');
+  background-image: url('https://img3.stockfresh.com/files/p/pzaxe/m/34/2426724_stock-photo-seamless-vector-background---color-lines-on-white---eps8.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;
   background-position: center;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.text{
+  text-align: center;
+}
   </style>
 
   <body> 
-  {% block body %}
+  <!--Responsive Topnav-->	    
+  <div class="topnav" id="myTopnav">
+  <a href="{{ url_for('index')  }}" class="active">Home</a>
+  <a href="{{ url_for('index')  }}" class="dropbtn">About</a>
+  <a href="{{ url_for('index')  }}" class="dropbtn">Contact</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+  
+  <div class="text">
     <h1>Results</h1>
     <table>
-    <td>
-      <tr>Name</tr>
-      <tr>{{name}}</tr>
-    </td>
-    <p>Name: <span style = "color: royalblue">{{name}}</span>.</p>
-    <p>Artist: <span style = "color: royalblue"> {{artist}}</span>.</p>
-    <p>Album: <span style = "color: royalblue">{{albumn}}</span>.</p>
-    <p>Released Date: <span style = "color: royalblue">{{release_date}}</span>.</p>
+    <tr>
+      <td>Name</td>
+      <td>{{name}}</td>
+    </tr>
+    <tr>
+      <td>Artist</td>
+      <td>{{artist}}</td>
+    </tr>
+    <tr>
+      <td>Album</td>
+      <td>{{albumn}}</td>
+    </tr>
+    <tr>
+      <td>Released Date</td>
+      <td>{{release_date}}</td>
+    </tr>
     </table>
+  </div>
 
-    <img src="data:image/png;base64,{{ plot }}" alt="feature plot">
-    <img src="{{ pic }}" alt="emotion pic">
-
+  <h2>Song Features:</h2>
+    <img src="data:image/png;base64,{{ plot }}" alt="feature plot" class="center">
+  <h2>Recommendations:</h2>
+    <p>{{song_id}}{{artist_id}}</p>
+  <h2>Emotions Pictures Based on Song Features:</h2>
+    <img src="{{ pic }}" alt="emotion pic" class="center">
     
-    {% for profile in profile %}
-    <h1>User Profile</h1>
-    <p>Your past locations: {{ profile.current_location }}.</p>
-    <p>Date Created: {{ profile.date_created.date() }}.</p>
-    {% endfor %}
-    <a href = "{{ url_for('index')  }}"> Direct to Home</a>
-  {% endblock %}
   </body>
 </html>
