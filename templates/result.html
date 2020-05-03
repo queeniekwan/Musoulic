@@ -80,6 +80,28 @@ body {
     <h3 style="color: palevioletred;"> <b>Song Features >></b></h3>
   </div>
     <img src="data:image/png;base64,{{ plot }}" alt="feature plot" class="center">
+  <a href="{{ url_for('search')  }}" class="dropbtn">Search</a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  </div>
+  
+  <h1>Results</h1> <br>
+    <h3 style="color: rgb(216, 112, 147);"><b>Basic Track Info >></b></h3>
+    <table>
+    <p>Name: <span style = "color: rgb(90, 45, 60)">{{name}}</span></p>
+    <p>Artist: <span style = "color: rgb(90, 45, 60)"> {{artist}}</span></p>
+    <p>Album: <span style = "color: rgb(90, 45, 60)">{{albumn}}</span></p>
+    <p>Released Date: <span style = "color: rgb(90, 45, 60)">{{release_date}}</span></p>
+    </table>
+  
+    <h3 style="color: palevioletred;"> <b>Song Features >></b></h3>
+    <p>Key: <span style = "color: rgb(90, 45, 60)">{{ key }}</span></p>
+    <p>Modality Scale: <span style = "color: rgb(90, 45, 60)">{{ mode }}</span></p>
+    <p>Tempo - BPM (beats per min): <span style = "color: rgb(90, 45, 60)">{{ tempo }}</span></p>
+    <p>Meter (beats per bar): <span style = "color: rgb(90, 45, 60)">{{ meter }}</span></p>
+
+    <div id="chart">
+      <embed type="image/svg+xml" src= {{ chart|safe }} style ="width:80%" class="center"/>
+    </div>
 
   <div class="content2">
     <h3 style="color: palevioletred;"><b>Similar Song Recommendations >></b></h3>
@@ -96,5 +118,41 @@ body {
   </div>
     <img src="{{ pic }}" alt="emotion pic" class ="center">
 
+
+    <h3 style="color: palevioletred;"><b>Song Emotion >></b></h3>
+    
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      
+      .column {
+        float: left;
+        width: 25%;
+        padding: 5px;
+      }
+      
+      /* Clearfix (clear floats) */
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+      </style>
+
+  <div class="w3-container w3-teal">
+    <h3 style="color: rgb(90, 45, 60)">{{ emotion }}</h3>
+  </div>
+  
+  <div class="row">
+    {% for pic in pics %}
+    <div class="column">
+      <img src="{{ pic }}" alt="Snow" style="width:100%" height="200">
+    </div>
+    {% endfor %}
+  <div>
+    
+  <p>Photos provided by <a href="https://www.pexels.com/">Pexels</a></p>
+    
   </body>
-</html>
+  </html>
