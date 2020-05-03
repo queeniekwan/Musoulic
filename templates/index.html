@@ -115,22 +115,22 @@
     padding-left:3rem;
   }
 }
-  </style>
+</style>
 
-  <script>
-    var video = document.getElementById("myVideo");
-    var btn = document.getElementById("myBtn");
-    
-    function myFunction() {
-      if (video.paused) {
-        video.play();
-        btn.innerHTML = "Pause";
-      } else {
-        video.pause();
-        btn.innerHTML = "Play";
-      }
+<script>
+  var video = document.getElementById("myVideo");
+  var btn = document.getElementById("myBtn");
+  
+  function myFunction() {
+    if (video.paused) {
+      video.play();
+      btn.innerHTML = "Pause";
+    } else {
+      video.pause();
+      btn.innerHTML = "Play";
     }
-    </script>
+  }
+</script>
 
 <body>
 <!--Video Background-->
@@ -144,7 +144,7 @@
     <br>
     <a href="{{ url_for('search')  }}" class="btn"> <span>Search the song you want! </span></a>
   </div>
-  
+
   </div>
 </body>
 </html>
