@@ -20,7 +20,6 @@ def search_photo(query='', results_per_page=9):
 def main():
     p = search_photo('sadness')
     print(p)
-    
 
 if __name__ == "__main__":
     main()
