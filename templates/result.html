@@ -13,6 +13,8 @@
 .topnav {
   background-color: rgba(255, 234, 234, 0.8);
   overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 
 /* Style the links inside the navigation bar */
@@ -40,7 +42,7 @@
 
 body{margin:0;}
 body {
-  background-image: url('https://cdn1.vectorstock.com/i/1000x1000/06/35/colorful-lines-on-white-background-vector-15890635.jpg');
+  background-image: url('https://data.whicdn.com/images/218213703/original.png');
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;
@@ -48,23 +50,24 @@ body {
 }
 
 .header-overlay{
-  height:100%;
-  width:60%;
+  height:350%;
+  width:100%;
   margin-left:auto;
   margin-right:auto;
-  position:relative;
+  position: absolute;;
   top:0;
   bottom:0;
   background: white;
-  z-index: -1;
+  z-index: 1;
   opacity: 0.45;
 }
 
-.content1, .content2, .content3{
+.title, .content1, .content2, .content3, .chart, .content4{
   max-width: 800px;
   margin:auto;
+  position: relative;
+  z-index: 2;
 }
-
 
 .center {
   display: block;
@@ -82,40 +85,53 @@ body {
 #song_info tr:nth-child(even){background-color: rgba(253, 247, 246, 0.67);}
 #song_info tr:hover {background-color: #f3c6c6;}
 
+#song_features td{
+  border: 1px solid #ddd;
+  padding:8px;
+}
+
+#song_features tr:nth-child(odd){background-color: rgba(249, 228, 225, 1);}
+#song_features tr:nth-child(even){background-color: rgba(253, 247, 246, 0.67);}
+#song_features tr:hover {background-color: #f3c6c6;}
+
 
 /* Photo Grid */
-      * {
-        box-sizing: border-box;
-      }
-      
-      .column {
-        float: left;
-        width: 25%;
-        padding: 5px;
-      }
-      
-      /* Clearfix (clear floats) */
-      .row::after {
-        content: "";
-        clear: both;
-        display: table;
-      }
- 
-  </style>
+* {
+  box-sizing: border-box;
+}
 
-  <body> 
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+ 
+</style>
+
+<body> 
+  <div class="header-overlay"></div>
   <!--Responsive Topnav-->	    
   <div class="topnav" id="myTopnav">
     <a href="{{ url_for('index')  }}" class="dropbtn">Home</a>
     <a href="{{ url_for('search')  }}" class="active">Search</a>
   </div>
 
-  <div class = "header-overlay"></div>
-  <div class="content1">
-  <h1 style="text-align: center"  style="color: rgb(90, 45, 60)">Results</h1> <br>
+  <br>
+ 
+  <div class="title">
+  <h1 style="color: rgb(90, 45, 60)">Search Result</h1>
+  </div>
 
-    <h3 style="color: palevioletred;"><b>Basic Track Info >></b></h3>
-    <table id="song_info" style="margin-left:auto;margin-right:auto; color: rgb(90, 45, 60)">
+  <div class="content1">
+    <h3 style="color: rgb(160, 56, 56);"><b>Basic Track Info >></b></h3>
+    <table id="song_info" style="color: rgb(90, 45, 60)">
       
       <tr>
         <td><b>Name</b></td>
@@ -138,45 +154,60 @@ body {
 
 
   <div class="content2">
-    <h3 style="color: palevioletred;"> <b>Song Features >></b></h3>
-    <p>Key: <span style = "color: rgb(90, 45, 60)">{{ key }}</span></p>
-    <p>Modality Scale: <span style = "color: rgb(90, 45, 60)">{{ mode }}</span></p>
-    <p>Tempo - BPM (beats per min): <span style = "color: rgb(90, 45, 60)">{{ tempo }}</span></p>
-    <p>Meter (beats per bar): <span style = "color: rgb(90, 45, 60)">{{ meter }}</span></p>
+    <h3 style="color: rgb(160, 56, 56)"> <b>Song Features >></b></h3>
+    <table id="song_features" style="color: rgb(90, 45, 60)">
+      
+      <tr>
+        <td><b>Key</b></td>
+        <td>{{ key }}</td>
+      </tr>
+      <tr>
+        <td><b>Modality Scale</b></td>
+        <td>{{ mode }}</td>
+      </tr>
+      <tr>
+        <td><b>Tempo (BPM)</b></td>
+        <td>{{ tempo }}</td>
+      </tr>
+      <tr>
+        <td><b>Meter</b></td>
+        <td>{{ meter }}</td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  
+  <div class="chart" id="chart">
+    <embed type="image/svg+xml" src= {{ chart|safe }} style ="width:100%" class="center"/>
   </div>
 
-    <div id="chart">
-      <embed type="image/svg+xml" src= {{ chart|safe }} style ="width:80%" class="center"/>
-    </div>
-
   <div class="content3">
-    <h3 style="color: palevioletred;"><b>Similar Song Recommendations >></b></h3>
+    <h3 style="color: rgb(160, 56, 56);"><b>Similar Song Recommendations >></b></h3>
     <ul>
       {% for song in recommendations %}
         <li style = "color: rgb(90, 45, 60)">{{ song }}</li>
       {% endfor %}
     </ul>
   </div>
-
-    <br>
-
-    <h3 style="color: palevioletred;"><b>Song Emotion >></b></h3>
   
-
-  <div class="w3-container w3-teal">
-    <h3 style="color: rgb(90, 45, 60)">{{ emotion }}</h3>
-  </div>
-</div>
+  <div class="content4">
+    <h3 style="color: rgb(160, 56, 56);"><b>Song Emotion >></b></h3>
   
-  <div class="row">
-    {% for pic in pics %}
-    <div class="column">
-      <img src="{{ pic }}" alt="Snow" style="width:100%" height="200">
+    <div class="w3-container w3-teal">
+      <h3 style="color: rgb(90, 45, 60)">{{ emotion }}</h3>
     </div>
-    {% endfor %}
-  <div>
+
+  
+    <div class="row">
+      {% for pic in pics %}
+      <div class="column">
+        <img src="{{ pic }}" alt="Snow" style="width:100%">
+      </div>
+      {% endfor %}
+    <div>
     
-  <p>Photos provided by <a href="https://www.pexels.com/">Pexels</a></p>
-    
-  </body>
-  </html>
+    <p style="color: rgb(90, 45, 60)">*Photos provided by <a href="https://www.pexels.com/">Pexels</a></p>
+  </div>
+
+</body>
+</html>

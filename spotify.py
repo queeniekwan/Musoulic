@@ -4,10 +4,7 @@ from pprint import pprint
 import pygal
 from pygal.style import Style
 from pygal.colors import darken, is_foreground_light, lighten
-from pygal import Config
 import copy
-
-
 
 # API keys
 client_id = '146abbf4a23e4b4d9ecb410a9923a35f'
@@ -54,7 +51,7 @@ def features_visualization(features):
 
     # customize chart style
     custom_style = Style(
-        background = 'rgba(253, 247, 246, 0.67)',
+        background = 'rgba(253, 247, 246, 0.4)',
         plot_background = 'rgba(249, 228, 225, 1)',
         foreground = 'rgba(0, 0, 0, 0.9)',
         foreground_strong = 'rgba(0, 0, 0, 0.9)',
@@ -97,9 +94,9 @@ def key(track_key):
 def mode(track_mode):
     ''' returns the corresponding modality scale (str) from the mode (int 0 or 1) '''
     if track_mode == 1:
-        return 'major'
+        return 'Major'
     elif track_mode == 0:
-        return 'minor'
+        return 'Minor'
 
 def emotion(features):
     '''
@@ -130,7 +127,6 @@ def recommendations(song_id='', artist_id=''):
 
     return recom_list
     
-
 def main():
     song_info = search_song('love story')
     print(song_info)
@@ -141,8 +137,6 @@ def main():
         print(rec)
 
         features_visualization(features)
-
-
 
 if __name__ == "__main__":
     main()
