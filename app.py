@@ -23,9 +23,11 @@ def search():
         except:
             return render_template('search.html', error=True)
         
-        # get track features and visualize
+        # get track features and visualization
         features = sp.song_features(song_info['song_id'])
-        figdata_png = sp.features_visualization(features)
+        chart_uri = sp.features_visualization(features)
+        key = sp.key(features['key'])
+        mode = sp.mode(features['mode'])
 
         # get recommendations
         recommendations = sp.recommendations(song_id=song_info['song_id'], artist_id=song_info['artist_id'])
@@ -36,7 +38,9 @@ def search():
 
         return render_template('result.html', 
         name=song_info['song'], artist=song_info['artist'], albumn=song_info['album'], release_date=song_info['release_date'],
-        recommendations=recommendations, plot=figdata_png.decode('utf8'), 
+        recommendations=recommendations, 
+        key=key, mode=mode, tempo=features['tempo'], meter=features['time_signature'],
+        chart=chart_uri, 
         emotion=emotion, photographer=emotion_pic['photographer'], pic=emotion_pic['link'])
     
     return render_template('search.html')

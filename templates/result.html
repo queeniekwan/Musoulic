@@ -34,13 +34,12 @@ body {
   <!--Responsive Topnav-->	    
   <div class="topnav" id="myTopnav">
   <a href="{{ url_for('index')  }}" class="active">Home</a>
-  <a href="{{ url_for('index')  }}" class="dropbtn">About</a>
-  <a href="{{ url_for('index')  }}" class="dropbtn">Contact</a>
+  <a href="{{ url_for('search')  }}" class="dropbtn">Search</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
   
   <h1>Results</h1> <br>
-    <h3 style="color: palevioletred;"><b>Basic Track Info >></b></h3>
+    <h3 style="color: rgb(216, 112, 147);"><b>Basic Track Info >></b></h3>
     <table>
     <p>Name: <span style = "color: rgb(90, 45, 60)">{{name}}</span></p>
     <p>Artist: <span style = "color: rgb(90, 45, 60)"> {{artist}}</span></p>
@@ -48,9 +47,17 @@ body {
     <p>Released Date: <span style = "color: rgb(90, 45, 60)">{{release_date}}</span></p>
     </table>
   </div>
+  
     
     <h3 style="color: palevioletred;"> <b>Song Features >></b></h3>
-    <img src="data:image/png;base64,{{ plot }}" alt="feature plot" class="center">
+    <p>Key: <span style = "color: rgb(90, 45, 60)">{{ key }}</span></p>
+    <p>Modality Scale: <span style = "color: rgb(90, 45, 60)">{{ mode }}</span></p>
+    <p>Tempo - BPM (beats per min): <span style = "color: rgb(90, 45, 60)">{{ tempo }}</span></p>
+    <p>Meter (beats per bar): <span style = "color: rgb(90, 45, 60)">{{ meter }}</span></p>
+
+    <div id="chart">
+      <embed type="image/svg+xml" src= {{ chart|safe }} style ="width:80%" class="center"/>
+   </div>
 
     <h3 style="color: palevioletred;"><b>Similar Song Recommendations >></b></h3>
     <ul>
@@ -61,12 +68,9 @@ body {
     <br>
     <h3 style="color: palevioletred;"><b>Song Emotion >></b></h3>
     <p style = "color: rgb(90, 45, 60)">This song is {{ emotion }}</p>
-    <img src="{{ pic }}" alt="emotion pic" class ="center">
+    <img src="{{ pic }}" alt="emotion pic" style ="width:80%" class="center">
+    <p>Photos provided by <a href="https://www.pexels.com/">Pexels</a></p>
 
-    
-    
-    
-    <a href = "{{ url_for('index')  }}">Home</a>
-    <a href = "{{ url_for('search')  }}">New Search</a>
+  
   </body>
 </html>

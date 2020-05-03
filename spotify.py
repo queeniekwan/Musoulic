@@ -1,11 +1,13 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from pprint import pprint
-import pandas as pd
-import matplotlib.pyplot as plt
+import pygal
+from pygal.style import Style
+from pygal.colors import darken, is_foreground_light, lighten
+from pygal import Config
 import copy
-from io import BytesIO
-import base64
+
+
 
 # API keys
 client_id = '146abbf4a23e4b4d9ecb410a9923a35f'
@@ -47,23 +49,57 @@ def features_visualization(features):
     '''
     feature_dict = copy.deepcopy(features)
     # exclude some features
-    for feature in ['tempo','duration_ms','analysis_url', 'id', 'track_href', 'type', 'uri']:
+    for feature in ['time_signature','mode','loudness', 'key','tempo','duration_ms','analysis_url', 'id', 'track_href', 'type', 'uri']:
         del feature_dict[feature]
 
-    # convert scalar values into lists
+    # customize chart style
+    custom_style = Style(
+        background = 'rgba(253, 247, 246, 0.67)',
+        plot_background = 'rgba(249, 228, 225, 1)',
+        foreground = 'rgba(0, 0, 0, 0.9)',
+        foreground_strong = 'rgba(0, 0, 0, 0.9)',
+        foreground_subtle = 'rgba(0, 0, 0, 0.5)',
+        opacity = '.6',
+        opacity_hover = '.9',
+        colors = (
+            '#d94e4c', '#e5884f', '#39929a', lighten('#d94e4c', 10),
+            darken('#39929a', 15), lighten('#e5884f', 17), darken('#d94e4c', 10),
+            '#234547')
+        )
+    
+    # create chart
+    chart =  pygal.HorizontalBar(style=custom_style)
+    chart.title = 'Track Features'
     for feature, value in feature_dict.items():
-        value_list = [value]
-        feature_dict[feature] = value_list
+        chart.add(feature, value)
+    chart.render()
 
-    # creat pandas DataFrame and plot bar chart
-    df = pd.DataFrame(feature_dict)
-    row = df.iloc[0]
-    row.plot(kind='barh', x='Values', y='Features', title='Track Features')
-    figfile = BytesIO()
-    plt.savefig(figfile, format='png')
-    figfile.seek(0)
-    figdata_png = base64.b64encode(figfile.getvalue())
-    return figdata_png
+    return chart.render_data_uri()
+
+def key(track_key):
+    '''returns the corresponding pitch class (str) from the integer annotation (int) '''
+
+    pitch_class = {0: 'C', 
+    1: 'C#, Db', 
+    2: 'D', 
+    3: 'D#, Eb', 
+    4: 'E', 
+    5: 'F', 
+    6: 'F#, Gb', 
+    7: 'G', 
+    8: 'G#, Ab', 
+    9: 'A', 
+    10: 'A#, Bb',
+    11: 'B',}
+
+    return pitch_class[track_key]
+
+def mode(track_mode):
+    ''' returns the corresponding modality scale (str) from the mode (int 0 or 1) '''
+    if track_mode == 1:
+        return 'major'
+    elif track_mode == 0:
+        return 'minor'
 
 def emotion(features):
     '''
@@ -96,17 +132,16 @@ def recommendations(song_id='', artist_id=''):
     
 
 def main():
-    song_info = search_song('baby')
+    song_info = search_song('love story')
     print(song_info)
     if song_info:
         features = song_features(song_info['song_id'])
-        # pprint(features)
+        pprint(features)
         rec = recommendations(song_info['song_id'], song_info['artist_id'])
         print(rec)
-        # features_visualization(features)
-        # plot_url = features_visualization(features)
-        # print(plot_url)
-        # print(emotion(features))
+
+        features_visualization(features)
+
 
 
 if __name__ == "__main__":
