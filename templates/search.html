@@ -9,9 +9,38 @@
 </head>
 
 <style>
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: rgba(255, 234, 234, 0.8);
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color:  rgba(90, 45, 60, 0.8);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: rgba(90, 45, 60, 0.8);
+  color: white;
+}
+
+/* Add an active class to highlight the current page */
+.topnav a.active {
+  background-color: rgba(90, 45, 60, 0.8);
+  color: white;
+}
+
 body{margin:0;}
 body {
-  background-image: url('https://www.lawlessfrench.com/wp-content/uploads/music.png');
+  background-image: url('https://miro.medium.com/max/11570/1*uEj_3hEXJph7W50awMgaOw.jpeg');
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;
@@ -29,7 +58,7 @@ form.example input[type=text] {
   border: 1px solid palevioletred;
   float: left;
   width: 80%;
-  background:rgb(255, 211, 219);
+  background:rgb(250, 233, 233);
 }
 
 form.example button {
@@ -54,7 +83,6 @@ form.example::after {
   display: table;
 }
 
-
 .box{
   position: fixed;
   top: 50%;
@@ -67,14 +95,14 @@ form.example::after {
 <body>
 <!--Responsive Topnav-->	    
 <div class="topnav" id="myTopnav">
-<a href="{{ url_for('index')  }}" class="active">Home</a>
-<a href="{{ url_for('search')  }}" class="dropbtn">Search</a>
+<a href="{{ url_for('index')  }}" class="dropbtn">Home</a>
+<a href="{{ url_for('search')  }}" class="active">Search</a>
 <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
 <!--Search Input-->	
   <div class="box">
-  <form class="example" method="POST" name="form" style="margin:auto;max-width:300px">
+  <form class="example" method="POST" name="form" style="margin:auto;max-width:500px">
     {% if error %}
     <p style="color:orangered"><b>Unfortunately, that song is not in our database :ccc</b></p>
     {% endif %}
