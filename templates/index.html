@@ -80,6 +80,33 @@
   font-size:1.2rem;
   padding: 1rem 2rem;
   text-decoration: none;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.btn span{
+  cursor: pointer;
+  display: inline-block;
+  position:relative;
+  transition: 0.5s;
+}
+
+.btn span:after{
+  content: '\00bb';
+  position: absolute;
+  opacity:0;
+  top:0;
+  right:-20px;
+  transition: 0.5s;
+}
+
+.btn:hover span{
+  padding-right: 25px;
+}
+
+.btn:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 @media(max-width:960px){
@@ -116,7 +143,7 @@
   <div class = "header-content">
     <h1>Musoulic</h1>
     <br>
-    <a href="{{ url_for('search')  }}" class="btn">Search the song you want!</a>
+    <a href="{{ url_for('search')  }}" class="btn"> <span>Search the song you want! </span></a>
   </div>
 
   </body>
