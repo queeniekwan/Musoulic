@@ -97,17 +97,16 @@ form.example::after {
 <div class="topnav" id="myTopnav">
 <a href="{{ url_for('index')  }}" class="dropbtn">Home</a>
 <a href="{{ url_for('search')  }}" class="active">Search</a>
-<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
 <!--Search Input-->	
   <div class="box">
   <form class="example" method="POST" name="form" style="margin:auto;max-width:800px">
     {% if error %}
-    <p style="color:orangered"><b>Unfortunately, that song is not in our database :ccc</b></p>
+    <p style="color:rgb(90, 45, 60)"><b>Unfortunately, that song is not in our database :ccc</b></p>
     {% endif %}
     {% if empty %}
-    <p style="color:orangered"><b>Please enter a valid search query!</b></p>
+    <p style="color:rgb(90, 45, 60)"><b>Please enter a valid search query!</b></p>
     {% endif %}
     <input type="text" placeholder="Search.." name="query">
     <button type="submit"><i class="fa fa-search"></i></button>

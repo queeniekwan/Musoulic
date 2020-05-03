@@ -52,7 +52,7 @@
   left:0;
   background: white;
   z-index:1;
-  opacity: 0.45;
+  opacity: 0.35;
 }
 
 .header-content{
@@ -134,17 +134,17 @@
 
 <body>
 <!--Video Background-->
-
 <header class ="v-header container">
   <div class="fullscreen-video-wrap">
     <video src={{ url_for('static', filename="video.mp4") }} type="video/mp4" autoplay="true" loop="true" muted></video>
   </div>
   <div class = "header-overlay"></div>
   <div class = "header-content">
-    <h1>Musoulic</h1>
+    <h1 style="color: rgb(90, 45, 60);">Musoulic</h1>
     <br>
     <a href="{{ url_for('search')  }}" class="btn"> <span>Search the song you want! </span></a>
   </div>
-
-  </body>
+  
+  </div>
+</body>
 </html>
