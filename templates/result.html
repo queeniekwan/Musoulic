@@ -18,15 +18,24 @@ body {
   background-position: center;
 }
 
-.content1{
+.header-overlay{
+  height:100%;
+  width:60%;
+  margin-left:auto;
+  margin-right:auto;
+  position:relative;
+  top:0;
+  bottom:0;
+  background: white;
+  z-index: -1;
+  opacity: 0.45;
+}
+
+.content1, .content2, .content3{
   max-width: 800px;
   margin:auto;
 }
 
-.content2{
-  max-width: 800px;
-  margin:auto;
-}
 
 .center {
   display: block;
@@ -72,11 +81,13 @@ body {
     <a href="{{ url_for('search')  }}" class="active">Search</a>
   </div>
 
+  <div class = "header-overlay"></div>
   <div class="content1">
   <h1 style="text-align: center"  style="color: rgb(90, 45, 60)">Results</h1> <br>
 
     <h3 style="color: palevioletred;"><b>Basic Track Info >></b></h3>
-    <table id="song_info" style = "color: rgb(90, 45, 60)">
+    <table id="song_info" style="margin-left:auto;margin-right:auto; color: rgb(90, 45, 60)">
+      
       <tr>
         <td><b>Name</b></td>
         <td>{{name}}</td>
@@ -104,10 +115,10 @@ body {
     <p>Tempo - BPM (beats per min): <span style = "color: rgb(90, 45, 60)">{{ tempo }}</span></p>
     <p>Meter (beats per bar): <span style = "color: rgb(90, 45, 60)">{{ meter }}</span></p>
   </div>
-  
-  <div id="chart">
-    <embed type="image/svg+xml" src= {{ chart|safe }} style ="width:80%" class="center"/>
-  </div>
+
+    <div id="chart">
+      <embed type="image/svg+xml" src= {{ chart|safe }} style ="width:80%" class="center"/>
+    </div>
 
   <div class="content3">
     <h3 style="color: palevioletred;"><b>Similar Song Recommendations >></b></h3>
@@ -121,12 +132,12 @@ body {
     <br>
 
     <h3 style="color: palevioletred;"><b>Song Emotion >></b></h3>
-    <p style = "color: rgb(90, 45, 60)">This song is {{ emotion }}</p>
-    
+  
 
   <div class="w3-container w3-teal">
     <h3 style="color: rgb(90, 45, 60)">{{ emotion }}</h3>
   </div>
+</div>
   
   <div class="row">
     {% for pic in pics %}

@@ -107,11 +107,11 @@ def emotion(features):
     '''
     emotion = ''
     if features['energy']<0.45 or features['speechiness']<0.035 or features['valence']<0.3:
-        emotion = 'sadness'
+        emotion = 'Sadness'
     elif features['energy']<0.7 or features['speechiness']<0.08 or features['valence']>0.5:
-        emotion = 'happiness'
+        emotion = 'Happiness'
     elif features['energy']>=0.7 or features['speechiness']>=0.08 or features['valence']>=0.6:
-        emotion = 'energetic'
+        emotion = 'Energetic'
 
     return emotion
 
