@@ -11,11 +11,21 @@
   <style>
 body{margin:0;}
 body {
-  background-image: url('https://thumbs.dreamstime.com/b/abstract-music-seamless-pattern-background-colored-notes-treble-clef-cute-elements-white-package-design-74145893.jpg');
+  background-image: url('https://cdn1.vectorstock.com/i/1000x1000/06/35/colorful-lines-on-white-background-vector-15890635.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;
   background-position: center;
+}
+
+.content1{
+  max-width: 800px;
+  margin:auto;
+}
+
+.content2{
+  max-width: 800px;
+  margin:auto;
 }
 
 .center {
@@ -25,61 +35,66 @@ body {
   width: 50%;
 }
 
-.text{
-  text-align: center;
+#song_info td{
+  border: 1px solid #ddd;
+  padding:8px;
 }
 
-.header-overlay{
-  height:100%;
-  width:60%;
-  position:absolute;
-  align-items: center;
-  top:0;
-  left:0;
-  background: white;
-  z-index:1;
-  opacity: 0.45;
-}
+#song_info tr:nth-child(even){background-color: #f2f2f2;}
+#song_info tr:hover {background-color: #ddd;}
+
+
+
   </style>
 
   <body> 
   <!--Responsive Topnav-->	    
   <div class="topnav" id="myTopnav">
   <a href="{{ url_for('index')  }}" class="active">Home</a>
-  <a href="{{ url_for('index')  }}" class="dropbtn">About</a>
-  <a href="{{ url_for('index')  }}" class="dropbtn">Contact</a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+  <a href="{{ url_for('index')  }}" class="dropbtn">Search</a>
   </div>
-  
-  <div class = "header-overlay"></div>
-  <h1>Results</h1> <br>
+
+  <div class="content1">
+  <h1 style="text-align: center">Results</h1> <br>
+
     <h3 style="color: palevioletred;"><b>Basic Track Info >></b></h3>
-    <table>
-    <p>Name: <span style = "color: rgb(90, 45, 60)">{{name}}</span></p>
-    <p>Artist: <span style = "color: rgb(90, 45, 60)"> {{artist}}</span></p>
-    <p>Album: <span style = "color: rgb(90, 45, 60)">{{albumn}}</span></p>
-    <p>Released Date: <span style = "color: rgb(90, 45, 60)">{{release_date}}</span></p>
+    <table id="song_info">
+      <tr>
+        <td><b>Name</b></td>
+        <td>{{name}}</td>
+      </tr>
+      <tr>
+        <td><b>Artist</b></td>
+        <td>{{artist}}</td>
+      </tr>
+      <tr>
+        <td><b>Album</b></td>
+        <td>{{albumn}}</td>
+      </tr>
+      <tr>
+        <td><b>Released Date</b></td>
+        <td>{{release_date}}</td>
+      </tr>
     </table>
-  </div>
     
     <h3 style="color: palevioletred;"> <b>Song Features >></b></h3>
+  </div>
     <img src="data:image/png;base64,{{ plot }}" alt="feature plot" class="center">
 
+  <div class="content2">
     <h3 style="color: palevioletred;"><b>Similar Song Recommendations >></b></h3>
     <ul>
       {% for song in recommendations %}
         <li style = "color: rgb(90, 45, 60)">{{ song }}</li>
       {% endfor %}
     </ul>
+
     <br>
+
     <h3 style="color: palevioletred;"><b>Song Emotion >></b></h3>
     <p style = "color: rgb(90, 45, 60)">This song is {{ emotion }}</p>
+  </div>
     <img src="{{ pic }}" alt="emotion pic" class ="center">
 
-    
-    
-    
-    <a href = "{{ url_for('index')  }}">Home</a>
-    <a href = "{{ url_for('search')  }}">New Search</a>
   </body>
 </html>
