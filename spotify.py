@@ -45,7 +45,7 @@ def song_features(id):
 def features_visualization(features):
     '''
     features - a dictionary of track features
-    prints a bar plot of all features
+    prints a bar chart of selected features (on the same scale of 0-1)
     '''
     feature_dict = copy.deepcopy(features)
     # exclude some features
@@ -107,9 +107,9 @@ def emotion(features):
     '''
     emotion = ''
     if features['energy']<0.45 or features['speechiness']<0.035 or features['valence']<0.3:
-        emotion = 'sad'
+        emotion = 'sadness'
     elif features['energy']<0.7 or features['speechiness']<0.08 or features['valence']>0.5:
-        emotion = 'sweet and happy'
+        emotion = 'happiness'
     elif features['energy']>=0.7 or features['speechiness']>=0.08 or features['valence']>=0.6:
         emotion = 'energetic'
 

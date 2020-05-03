@@ -32,16 +32,16 @@ def search():
         # get recommendations
         recommendations = sp.recommendations(song_id=song_info['song_id'], artist_id=song_info['artist_id'])
         
-        # get emotion tag and search for pic
+        # get emotion tag and search for pics
         emotion = sp.emotion(features)
-        emotion_pic = px.search_photo(emotion)
+        emotion_pics = px.search_photo(emotion)
 
         return render_template('result.html', 
         name=song_info['song'], artist=song_info['artist'], albumn=song_info['album'], release_date=song_info['release_date'],
         recommendations=recommendations, 
         key=key, mode=mode, tempo=features['tempo'], meter=features['time_signature'],
         chart=chart_uri, 
-        emotion=emotion, photographer=emotion_pic['photographer'], pic=emotion_pic['link'])
+        emotion=emotion, pics=emotion_pics)
     
     return render_template('search.html')
 
