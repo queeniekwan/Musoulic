@@ -6,39 +6,23 @@
     <link rel='stylesheet' href="{{ url_for('static',filename='css/externalstylesheet.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
   
 <style>
-/* Add a black background color to the top navigation */
-.topnav {
-  background-color: rgba(255, 234, 234, 0.8);
-  overflow: hidden;
-  position: relative;
-  z-index: 2;
+/*Fixed nav bar*/
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  display: block;
-  color:  rgba(90, 45, 60, 0.8);
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+.result{
+  padding: 16px
 }
 
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: rgba(90, 45, 60, 0.8);
-  color: white;
+.sticky + .result{
+  padding-top: 60px;
 }
 
-/* Add an active class to highlight the current page */
-.topnav a.active {
-  background-color: rgba(90, 45, 60, 0.8);
-  color: white;
-}
 
 body{margin:0;}
 body {
@@ -49,24 +33,11 @@ body {
   background-position: center;
 }
 
-.header-overlay{
-  height:350%;
-  width:100%;
-  margin-left:auto;
-  margin-right:auto;
-  position: absolute;;
-  top:0;
-  bottom:0;
-  background: white;
-  z-index: 1;
-  opacity: 0.45;
-}
-
 .title, .content1, .content2, .content3, .chart, .content4{
   max-width: 800px;
   margin:auto;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .center {
@@ -112,19 +83,41 @@ body {
   clear: both;
   display: table;
 }
- 
+
 </style>
 
+<script>
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+// Get the navbar
+var navbar = document.getElementById("navbar");
+
+// Get the offset position of the navbar
+var sticky = navbar.offsetTop;
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+  </script>
+</head>
+
 <body> 
-  <div class="header-overlay"></div>
   <!--Responsive Topnav-->	    
-  <div class="topnav" id="myTopnav">
+  <div class="topnav" id="navbar">
     <a href="{{ url_for('index')  }}" class="dropbtn"><i class = "fa fa-fw fa-home"></i> Home</a>
     <a href="{{ url_for('search')  }}" class="active"><i class="fa fa-fw fa-search"></i> Search</a>
   </div>
 
   <br>
- 
+
+ <div class="result">
+
   <div class="title">
   <h1 style="color: rgb(90, 45, 60)">Search Result</h1>
   </div>
@@ -208,6 +201,7 @@ body {
     
     <p style="color: rgb(90, 45, 60)">*Photos provided by <a href="https://www.pexels.com/">Pexels</a></p>
   </div>
+</div>
 
 </body>
 </html>
