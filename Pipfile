@@ -10,6 +10,7 @@ gunicorn = "*"
 django-heroku = "*"
 Django = "*"
 flask = "*"
+spotipy = "*"
 
 [requires]
 python_version = "3.8"
