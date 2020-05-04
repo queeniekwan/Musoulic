@@ -1,1 +1,1 @@
-web: gunicorn musoulic.wsgi --log-file -
+web: node app.py
