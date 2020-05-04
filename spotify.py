@@ -1,4 +1,3 @@
-import os
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from pprint import pprint
@@ -6,11 +5,10 @@ import pygal
 from pygal.style import Style
 from pygal.colors import darken, is_foreground_light, lighten
 import copy
-from boto.s3.connection import S3Connection
 
-
-# Get Config Variables 
-s3 = S3Connection(os.environ['SPOTIFY_CLIENT_ID'], os.environ['SPOTIFY_CLIENT_SECRET'])
+# API KEYS
+SPOTIFY_CLIENT_ID = '146abbf4a23e4b4d9ecb410a9923a35f'
+SPOTIFY_CLIENT_SECRET = 'eecbb95959074abb8d773a216294b6b0'
 
 # Create API object
 client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET)
