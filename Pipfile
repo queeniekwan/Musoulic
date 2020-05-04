@@ -11,6 +11,10 @@ django-heroku = "*"
 Django = "*"
 flask = "*"
 spotipy = "*"
+pygal = "*"
+copy = "*"
+pexels-api = "*"
+api = "*"
 
 [requires]
 python_version = "3.8"
