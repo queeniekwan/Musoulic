@@ -1,7 +1,8 @@
 from pexels_api import API
+from boto.s3.connection import S3Connection
 
-# API keys
-PEXELS_API_KEY = '563492ad6f91700001000001f15d07838df1429bb172cf9081a1f0cc'
+# Get Config Variables 
+s3 = S3Connection(os.environ['PEXELS_API_KEY'])
 # Create API object
 px = API(PEXELS_API_KEY)
 

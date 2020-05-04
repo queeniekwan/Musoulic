@@ -5,12 +5,13 @@ import pygal
 from pygal.style import Style
 from pygal.colors import darken, is_foreground_light, lighten
 import copy
+from boto.s3.connection import S3Connection
 
-# API keys
-client_id = '146abbf4a23e4b4d9ecb410a9923a35f'
-client_secret = 'eecbb95959074abb8d773a216294b6b0'
+# Get Config Variables 
+s3 = S3Connection(os.environ['SPOTIFY_CLIENT_KEY'], os.environ['SPOTIFY_CLIENT_SECRET'])
+
 # Create API object
-client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
+client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIFY_CLIENT_KEY, client_secret=SPOTIFY_CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def search_song(query):
