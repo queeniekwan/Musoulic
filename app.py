@@ -4,12 +4,12 @@ import pexels as px
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def index():
     ''' home page '''
     return render_template('index.html')
 
-@app.route('/search-song/', methods=['POST'])
+@app.route('/search-song/', methods=['GET','POST'])
 def search():
     '''get result for a search'''
     if request.method == 'POST':
