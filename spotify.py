@@ -103,12 +103,12 @@ def emotion(features):
     returns an emotion tag (string) based on a song's features (dict)
     '''
     emotion = ''
-    if features['energy']<0.45 or features['speechiness']<0.035 or features['valence']<0.3:
-        emotion = 'Sadness'
+    if features['energy']>=0.7 or features['speechiness']>=0.08 or features['valence']>=0.6:
+        emotion = 'Energetic'
     elif features['energy']<0.7 or features['speechiness']<0.08 or features['valence']>0.5:
         emotion = 'Happiness'
-    elif features['energy']>=0.7 or features['speechiness']>=0.08 or features['valence']>=0.6:
-        emotion = 'Energetic'
+    elif features['energy']<0.45 or features['speechiness']<0.035 or features['valence']<0.3:
+        emotion = 'Sadness'
 
     return emotion
 
