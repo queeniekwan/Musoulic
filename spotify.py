@@ -10,10 +10,10 @@ from boto.s3.connection import S3Connection
 
 
 # Get Config Variables 
-s3 = S3Connection(os.environ['SPOTIFY_CLIENT_KEY'], os.environ['SPOTIFY_CLIENT_SECRET'])
+s3 = S3Connection(os.environ['SPOTIFY_CLIENT_ID'], os.environ['SPOTIFY_CLIENT_SECRET'])
 
 # Create API object
-client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIFY_CLIENT_KEY, client_secret=SPOTIFY_CLIENT_SECRET)
+client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def search_song(query):
