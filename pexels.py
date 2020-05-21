@@ -1,6 +1,11 @@
 from pexels_api import API
+from configparser import ConfigParser
 
-PEXELS_API_KEY = '563492ad6f91700001000001f15d07838df1429bb172cf9081a1f0cc'
+# Get Config
+config = ConfigParser()
+config.read('config.ini')
+PEXELS_API_KEY = config.get('Pexels', 'PEXELS_API_KEY')
+
 # Create API object
 px = API(PEXELS_API_KEY)
 
