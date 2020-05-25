@@ -7,11 +7,15 @@ from pygal.colors import darken, is_foreground_light, lighten
 import copy
 from configparser import ConfigParser
 
-# Get Config
-config = ConfigParser()
-config.read('config.ini')
-SPOTIFY_CLIENT_ID = config.get('Spotify', 'SPOTIFY_CLIENT_ID')
-SPOTIFY_CLIENT_SECRET = config.get('Spotify', 'SPOTIFY_CLIENT_SECRET')
+# # Get Config
+# config = ConfigParser()
+# config.read('config.ini')
+# SPOTIFY_CLIENT_ID = config.get('Spotify', 'SPOTIFY_CLIENT_ID')
+# SPOTIFY_CLIENT_SECRET = config.get('Spotify', 'SPOTIFY_CLIENT_SECRET')
+
+# API KEYS
+SPOTIFY_CLIENT_ID = '146abbf4a23e4b4d9ecb410a9923a35f'
+SPOTIFY_CLIENT_SECRET = 'eecbb95959074abb8d773a216294b6b0'
 
 # Create API object
 client_credentials_manager = SpotifyClientCredentials(client_id=SPOTIFY_CLIENT_ID, client_secret=SPOTIFY_CLIENT_SECRET)
